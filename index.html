@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Memo by Miraal - timeless, expressive eastern wear for everyday celebrations.">
+  <title>Memo by Miraal</title>
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/memo-favicon.png?v=2">
+  <link rel="apple-touch-icon" href="assets/memo-favicon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="hotline" href="#newsletter">A note from our studio · Join the Memo community</a>
+
+  <header class="header">
+    <button class="menu-trigger" id="menuButton" aria-label="Open menu" aria-expanded="false">
+      <i></i><i></i><span>Menu</span>
+    </button>
+    <a class="logo" href="#" aria-label="Memo home">
+      <img src="assets/memo-logo.png" alt="Memo">
+    </a>
+    <div class="tools">
+      <button class="currency">PKR⌄</button>
+      <button aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></button>
+      <button class="desktop-icon" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 21c.5-5 3-7 7-7s6.5 2 7 7"/></svg></button>
+      <button class="desktop-icon counter" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="m12 20-1.4-1.3C5.4 14.1 2 11 2 7.3 2 4.3 4.4 2 7.4 2c1.7 0 3.3.8 4.6 2.1C13.3 2.8 14.9 2 16.6 2 19.6 2 22 4.3 22 7.3c0 3.7-3.4 6.8-8.6 11.4L12 20Z"/></svg><sup>(0)</sup></button>
+      <button class="counter" aria-label="Shopping bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><sup>(0)</sup></button>
+    </div>
+  </header>
+
+  <div class="menu-panel" id="menuPanel" aria-hidden="true">
+    <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
+    <nav>
+      <a href="#new">New Arrivals</a>
+      <a href="#new">The Silk Edit</a>
+      <a href="#top-picks">Everyday Memo</a>
+      <a href="#top-picks">Occasion Wear</a>
+      <a href="#story">Our Story</a>
+      <a href="#social">@memobymiraal</a>
+    </nav>
+  </div>
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+
+  <main>
+    <section class="hero" aria-label="Memo by Miraal featured collection">
+      <div class="hero-copy">
+        <p class="eyebrow">The summer memo · 2026</p>
+        <h1>Made for your<br><em>softest moments.</em></h1>
+        <p>Easy silhouettes, delicate details, and colours borrowed from the garden.</p>
+        <a href="#new">Explore the collection</a>
+      </div>
+      <div class="hero-image" id="heroCarousel" aria-roledescription="carousel" aria-label="Featured Memo looks">
+        <div class="hero-slides" aria-live="polite">
+          <img class="hero-slide active" src="assets/photos/img_9818.jpg" alt="Model wearing a lilac embroidered Memo by Miraal dress">
+          <img class="hero-slide" src="assets/photos/img_9828.jpg" alt="Model wearing a mint embroidered Memo by Miraal dress">
+          <img class="hero-slide" src="assets/photos/img_4089.jpg" alt="Model wearing a rose pink embroidered Memo by Miraal dress">
+          <img class="hero-slide" src="assets/photos/img_4140.jpg" alt="Model wearing a sage embroidered Memo by Miraal dress">
+          <img class="hero-slide" src="assets/photos/img_1524.jpg" alt="Model wearing a powder blue Memo by Miraal dress">
+        </div>
+        <div class="hero-carousel-ui">
+          <div class="hero-arrows">
+            <button class="hero-arrow hero-prev" type="button" aria-label="Previous featured image">&larr;</button>
+            <button class="hero-arrow hero-next" type="button" aria-label="Next featured image">&rarr;</button>
+          </div>
+          <div class="hero-dots" aria-label="Choose featured image">
+            <button class="active" type="button" aria-label="Show lilac look" aria-current="true"><img src="assets/photos/img_9818.jpg" alt=""></button>
+            <button type="button" aria-label="Show mint look"><img src="assets/photos/img_9828.jpg" alt=""></button>
+            <button type="button" aria-label="Show rose look"><img src="assets/photos/img_4089.jpg" alt=""></button>
+            <button type="button" aria-label="Show sage look"><img src="assets/photos/img_4140.jpg" alt=""></button>
+            <button type="button" aria-label="Show powder blue look"><img src="assets/photos/img_1524.jpg" alt=""></button>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <section class="products" id="new">
+      <div class="tabs">
+        <button class="active">New In</button>
+        <button>Soft Pastels</button>
+        <button>Evening Notes</button>
+        <button>Everyday Silks</button>
+      </div>
+      <div class="product-grid">
+        <article>
+          <div class="product-photo">
+            <img src="assets/photos/img_7289.jpg" alt="Lavender silk ensemble">
+            <div class="card-tools">
+              <button class="quick-view" type="button" aria-label="Quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+              <button class="heart" type="button" aria-label="Add to wishlist" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></button>
+            </div>
+          </div>
+          <h2>Lavender Dusk</h2>
+          <p>Silk shirt with embroidered details</p>
+        </article>
+        <article>
+          <div class="product-photo">
+            <img src="assets/photos/img_9828.jpg" alt="Mint embroidered dress">
+            <div class="card-tools">
+              <button class="quick-view" type="button" aria-label="Quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+              <button class="heart" type="button" aria-label="Add to wishlist" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></button>
+            </div>
+          </div>
+          <h2>Mint Memo</h2>
+          <p>Pastel embroidered long shirt</p>
+        </article>
+        <article>
+          <div class="product-photo">
+            <img src="assets/photos/img_4089.jpg" alt="Rose pink formal ensemble">
+            <div class="card-tools">
+              <button class="quick-view" type="button" aria-label="Quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+              <button class="heart" type="button" aria-label="Add to wishlist" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></button>
+            </div>
+          </div>
+          <h2>Rose Garden</h2>
+          <p>Embroidered occasion ensemble</p>
+        </article>
+        <article>
+          <div class="product-photo">
+            <img src="assets/photos/img_4140.jpg" alt="Sage green embroidered dress">
+            <div class="card-tools">
+              <button class="quick-view" type="button" aria-label="Quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 12s3.5-6 9.6-6 9.6 6 9.6 6-3.5 6-9.6 6-9.6-6-9.6-6Z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+              <button class="heart" type="button" aria-label="Add to wishlist" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></button>
+            </div>
+          </div>
+          <h2>Willow</h2>
+          <p>Botanical sage silk dress</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="top-picks" id="top-picks">
+      <p class="eyebrow">A wardrobe in bloom</p>
+      <h2>Notes for the Season</h2>
+      <div class="pick-grid">
+        <a href="#"><img src="assets/photos/img_7990.jpg" alt="Deep green evening outfit"><span><small>Evening notes</small>Deep Greens</span></a>
+        <a href="#"><img src="assets/photos/img_9820.jpg" alt="Lilac embroidered outfit"><span><small>Quiet colour</small>Garden Lilacs</span></a>
+        <a href="#"><img src="assets/photos/img_1524.jpg" alt="Powder blue silk dress"><span><small>Easy elegance</small>Powder Blues</span></a>
+      </div>
+    </section>
+
+    <section class="wedding-feature" id="story">
+      <div class="story-image">
+        <img src="assets/photos/img_1355.jpg" alt="Woman wearing a pale yellow embroidered kaftan">
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow">The story behind the clothes</p>
+        <h2>A little memory,<br>made wearable.</h2>
+        <p>Memo by Miraal is a love letter to colour, comfort and the women who make every room feel warmer. Each piece is designed to live beyond an occasion and become part of your own story.</p>
+        <a href="#">Read our story</a>
+      </div>
+    </section>
+
+    <section class="occasions">
+      <a href="#"><img src="assets/photos/img_8818.jpg" alt="Ivory embroidered dress"><span>Ivory</span></a>
+      <a href="#"><img src="assets/photos/img_5142.jpg" alt="Clay rose embroidered dress"><span>Clay Rose</span></a>
+      <a href="#"><img src="assets/photos/img_4715.jpg" alt="Black floral embroidered dress"><span>Midnight</span></a>
+      <a href="#"><img src="assets/photos/img_0445.jpg" alt="Dusty pink embroidered dress"><span>Petal</span></a>
+    </section>
+
+    <section class="social" id="social">
+      <p class="eyebrow">Seen and loved</p>
+      <h2>@memobymiraal</h2>
+      <div>
+        <img src="assets/photos/img_9828.jpg" alt="Memo by Miraal mint look">
+        <img src="assets/photos/img_4089.jpg" alt="Memo by Miraal rose look">
+        <img src="assets/photos/img_7990.jpg" alt="Memo by Miraal green look">
+        <img src="assets/photos/img_0445.jpg" alt="Memo by Miraal pink look">
+        <img src="assets/photos/img_1355.jpg" alt="Memo by Miraal yellow look">
+      </div>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+      <p class="eyebrow">Keep a little Memo</p>
+      <h2>Letters from Miraal</h2>
+      <p>New pieces, thoughtful stories and first access, sent gently to your inbox.</p>
+      <form id="newsletterForm">
+        <label class="sr-only" for="email">Email address</label>
+        <input id="email" type="email" placeholder="Enter your email here..." required>
+        <button>Subscribe</button>
+      </form>
+      <small id="formMessage" aria-live="polite"></small>
+    </section>
+  </main>
+
+  <footer>
+    <div><h3>Memo by Miraal</h3><a href="#">Our Story</a><a href="#">The Journal</a><a href="#">Contact Us</a></div>
+    <div><h3>Customer Care</h3><a href="#">FAQ's</a><a href="#">Returns & Exchanges</a><a href="#">Privacy Policy</a></div>
+    <div><h3>Online Information</h3><a href="#">My Account</a><a href="#">Order History</a><a href="#">Terms & Conditions</a></div>
+    <p>© 2026 MEMO BY MIRAAL · @MEMOBYMIRAAL</p>
+  </footer>
+
+  <a class="whatsapp" href="https://api.whatsapp.com/send?phone=923088844444" aria-label="WhatsApp">◔</a>
+  <script src="script.js"></script>
+</body>
+</html>
