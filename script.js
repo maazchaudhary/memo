@@ -34,6 +34,59 @@ document.querySelectorAll(".heart").forEach((button) => {
   });
 });
 
+const quickViewModal = document.querySelector("#quickViewModal");
+const quickViewDialog = quickViewModal.querySelector(".quick-view-dialog");
+const quickViewImage = document.querySelector("#quickViewImage");
+const quickViewTitle = document.querySelector("#quickViewTitle");
+const quickViewPrice = document.querySelector("#quickViewPrice");
+const quickViewSummary = document.querySelector("#quickViewSummary");
+const quickViewDescription = document.querySelector("#quickViewDescription");
+const addToCartButton = document.querySelector("#addToCart");
+const cartMessage = document.querySelector("#cartMessage");
+const cartCount = document.querySelector(".cart-counter sup");
+let cartItems = 0;
+let lastQuickViewTrigger;
+
+function setQuickView(open) {
+  quickViewModal.classList.toggle("open", open);
+  quickViewModal.setAttribute("aria-hidden", String(!open));
+  document.body.classList.toggle("modal-open", open);
+
+  if (open) {
+    quickViewDialog.querySelector(".quick-view-close").focus();
+  } else {
+    lastQuickViewTrigger?.focus();
+  }
+}
+
+document.querySelectorAll(".quick-view").forEach((button) => {
+  button.addEventListener("click", () => {
+    const product = button.closest("article");
+    const image = product.querySelector(".product-photo > img");
+
+    lastQuickViewTrigger = button;
+    quickViewImage.src = image.src;
+    quickViewImage.alt = image.alt;
+    quickViewTitle.textContent = product.querySelector("h2").textContent;
+    quickViewPrice.textContent = product.dataset.price;
+    quickViewSummary.textContent = product.querySelector("p").textContent;
+    quickViewDescription.textContent = product.dataset.details;
+    cartMessage.textContent = "";
+    addToCartButton.dataset.product = quickViewTitle.textContent;
+    setQuickView(true);
+  });
+});
+
+quickViewModal.querySelectorAll("[data-quick-view-close]").forEach((button) => {
+  button.addEventListener("click", () => setQuickView(false));
+});
+
+addToCartButton.addEventListener("click", () => {
+  cartItems += 1;
+  cartCount.textContent = `(${cartItems})`;
+  cartMessage.textContent = `${addToCartButton.dataset.product} has been added to your bag.`;
+});
+
 const heroCarousel = document.querySelector("#heroCarousel");
 const heroSlides = [...heroCarousel.querySelectorAll(".hero-slide")];
 const heroDots = [...heroCarousel.querySelectorAll(".hero-dots button")];
@@ -81,4 +134,10 @@ document.querySelector("#newsletterForm").addEventListener("submit", (event) => 
   event.preventDefault();
   document.querySelector("#formMessage").textContent = "Thank you for subscribing.";
   event.currentTarget.reset();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && quickViewModal.classList.contains("open")) {
+    setQuickView(false);
+  }
 });

@@ -12,7 +12,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Montserrat", sans-serif; font-size: 12px; font-weight: 300; }
-body.menu-open { overflow: hidden; }
+body.menu-open, body.modal-open { overflow: hidden; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
@@ -158,6 +158,25 @@ img { display: block; width: 100%; }
 .product-grid h2 { margin: 18px 0 7px; font: 23px "Cormorant Garamond",serif; }
 .product-grid p { margin: 0; color: #827b70; font-size: 9px; letter-spacing: .04em; }
 
+.quick-view-modal { visibility: hidden; position: fixed; z-index: 50; inset: 0; display: grid; place-items: center; padding: 28px; opacity: 0; transition: visibility .3s, opacity .3s ease; }
+.quick-view-modal.open { visibility: visible; opacity: 1; }
+.quick-view-backdrop { position: absolute; inset: 0; background: rgba(38,34,29,.62); backdrop-filter: blur(5px); }
+.quick-view-dialog { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(280px,.9fr) minmax(320px,1fr); width: min(920px,100%); max-height: calc(100vh - 56px); overflow: auto; background: var(--paper); box-shadow: 0 28px 80px rgba(28,25,21,.3); }
+.quick-view-close { position: absolute; z-index: 2; top: 16px; right: 18px; display: grid; width: 38px; height: 38px; padding: 0; place-items: center; border: 1px solid rgba(48,44,37,.15); border-radius: 50%; background: rgba(250,248,242,.94); color: var(--ink); box-shadow: 0 4px 16px rgba(31,29,25,.15); }
+.quick-view-close svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.quick-view-image { min-height: 590px; background: var(--cream); }
+.quick-view-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.quick-view-details { display: flex; flex-direction: column; justify-content: center; padding: clamp(42px,6vw,78px); }
+.quick-view-details h2 { margin: 0 0 8px; font: 400 clamp(38px,5vw,58px)/1 "Cormorant Garamond",serif; }
+.quick-view-price { margin: 0 0 27px; color: var(--clay); font-size: 11px; font-weight: 400; letter-spacing: .1em; }
+.quick-view-summary { margin: 0 0 18px; color: var(--ink); font: 20px/1.45 "Cormorant Garamond",serif; }
+.quick-view-description { margin: 0 0 25px; color: #746d62; font-size: 10px; line-height: 1.8; }
+.quick-view-notes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+.quick-view-notes span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 20px; color: #746d62; font-size: 8px; letter-spacing: .07em; text-transform: uppercase; }
+.add-to-cart { width: 100%; padding: 16px 20px; border: 1px solid var(--moss); background: var(--moss); color: #fff; font-size: 9px; letter-spacing: .18em; text-transform: uppercase; transition: background .2s ease, color .2s ease; }
+.add-to-cart:hover, .add-to-cart:focus-visible { background: transparent; color: var(--moss); }
+.cart-message { min-height: 15px; margin: 12px 0 0; color: var(--moss); font-size: 9px; text-align: center; }
+
 .top-picks { padding: 95px 4.5% 110px; background: #e5e5d8; text-align: center; }
 .top-picks > h2, .social > h2 { margin: 0 0 42px; font: 400 clamp(42px,5vw,66px)/1 "Cormorant Garamond",serif; }
 .pick-grid { display: grid; grid-template-columns: .95fr 1.1fr .95fr; align-items: center; gap: 22px; }
@@ -241,6 +260,14 @@ footer p { grid-column: 1/-1; margin: 30px 0 0; padding-top: 20px; border-top: 1
   .card-tools { right: 8px; bottom: 9px; }
   .card-tools button { width: 28px; height: 28px; }
   .card-tools svg { width: 15px; height: 15px; }
+  .quick-view-modal { padding: 14px; }
+  .quick-view-dialog { grid-template-columns: 1fr; max-height: calc(100vh - 28px); }
+  .quick-view-image { min-height: 0; }
+  .quick-view-image img { height: auto; max-height: none; object-fit: contain; }
+  .quick-view-details { padding: 34px 24px 28px; }
+  .quick-view-details h2 { font-size: 40px; }
+  .quick-view-summary { font-size: 18px; }
+  .quick-view-close { position: fixed; top: 24px; right: 24px; width: 40px; height: 40px; background: rgba(250,248,242,.96); }
   .top-picks { padding: 72px 16px; }
   .top-picks > h2, .social > h2 { margin-bottom: 30px; font-size: 43px; }
   .pick-grid { grid-template-columns: 1fr; gap: 17px; }
