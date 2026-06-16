@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
   <a class="hotline" href="#newsletter">A note from our studio · Join the Memo community</a>
@@ -54,11 +54,14 @@
       </div>
       <div class="hero-image" id="heroCarousel" aria-roledescription="carousel" aria-label="Featured Memo looks">
         <div class="hero-slides" aria-live="polite">
-          <img class="hero-slide active" src="assets/photos/img_9818.jpg" alt="Model wearing a lilac embroidered Memo by Miraal dress">
-          <img class="hero-slide" src="assets/photos/img_9828.jpg" alt="Model wearing a mint embroidered Memo by Miraal dress">
-          <img class="hero-slide" src="assets/photos/img_4089.jpg" alt="Model wearing a rose pink embroidered Memo by Miraal dress">
-          <img class="hero-slide" src="assets/photos/img_4140.jpg" alt="Model wearing a sage embroidered Memo by Miraal dress">
-          <img class="hero-slide" src="assets/photos/img_1524.jpg" alt="Model wearing a powder blue Memo by Miraal dress">
+          <picture class="hero-slide active hero-slide-composite">
+            <source media="(max-width: 1024px)" srcset="assets/photos/hero-composite-collection.png">
+            <img src="assets/photos/hero-composite-collection-headroom.png" alt="Four models wearing pastel embroidered Memo by Miraal outfits">
+          </picture>
+          <picture class="hero-slide hero-slide-composite">
+            <source media="(max-width: 1024px)" srcset="assets/photos/hero-composite-evening-collection.png">
+            <img src="assets/photos/hero-composite-evening-collection-headroom.png" alt="Four models wearing evening embroidered Memo by Miraal outfits">
+          </picture>
         </div>
         <div class="hero-carousel-ui">
           <div class="hero-arrows">
@@ -66,11 +69,8 @@
             <button class="hero-arrow hero-next" type="button" aria-label="Next featured image">&rarr;</button>
           </div>
           <div class="hero-dots" aria-label="Choose featured image">
-            <button class="active" type="button" aria-label="Show lilac look" aria-current="true"><img src="assets/photos/img_9818.jpg" alt=""></button>
-            <button type="button" aria-label="Show mint look"><img src="assets/photos/img_9828.jpg" alt=""></button>
-            <button type="button" aria-label="Show rose look"><img src="assets/photos/img_4089.jpg" alt=""></button>
-            <button type="button" aria-label="Show sage look"><img src="assets/photos/img_4140.jpg" alt=""></button>
-            <button type="button" aria-label="Show powder blue look"><img src="assets/photos/img_1524.jpg" alt=""></button>
+            <button class="active" type="button" aria-label="Show pastel collection" aria-current="true"><img src="assets/photos/hero-composite-collection-headroom.png" alt=""></button>
+            <button type="button" aria-label="Show evening collection"><img src="assets/photos/hero-composite-evening-collection-headroom.png" alt=""></button>
           </div>
         </div>
       </div>
@@ -220,6 +220,6 @@
   </footer>
 
   <a class="whatsapp" href="https://api.whatsapp.com/send?phone=923088844444" aria-label="WhatsApp">◔</a>
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
