@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+memo.sqlite3
+test_memo.sqlite3
