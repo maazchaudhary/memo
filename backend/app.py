@@ -598,6 +598,16 @@ def admin_page_slash():
     return FileResponse(ADMIN_DIR / "admin.html")
 
 
+@app.get("/admin/panel")
+def admin_panel_page():
+    return FileResponse(ADMIN_DIR / "panel.html")
+
+
+@app.get("/admin/panel.html")
+def admin_panel_file():
+    return FileResponse(ADMIN_DIR / "panel.html")
+
+
 @app.get("/styles.css")
 def legacy_styles():
     return FileResponse(PUBLIC_DIR / "css" / "styles.css")

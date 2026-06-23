@@ -6,6 +6,10 @@ let products = [];
 let orders = [];
 let stockRequests = [];
 let dashboardSalesPeriod = "weekly";
+const isAuthPage = Boolean(document.querySelector("#authView"));
+const isPanelPage = Boolean(document.querySelector("#adminApp"));
+const authPage = location.protocol === "file:" ? "admin.html" : "/admin";
+const panelPage = location.protocol === "file:" ? "panel.html" : "/admin/panel";
 
 const permissions = {
   super_admin: ["dashboard:view", "products:view", "products:create", "products:update", "products:delete", "inventory:update", "orders:view", "orders:update", "sales:view", "admins:manage"],
@@ -31,6 +35,7 @@ function escapeHtml(value) {
 
 function showNotice(message, ok = false) {
   const notice = document.querySelector("#notice");
+  if (!notice) return;
   notice.textContent = message || "";
   notice.style.color = ok ? "#4f6b52" : "#8b4148";
 }
@@ -50,16 +55,22 @@ async function request(path, options = {}) {
   return data;
 }
 
-function setAuthView(isLoggedIn) {
-  document.querySelector("#authView").classList.toggle("hidden", isLoggedIn);
-  document.querySelector("#adminApp").classList.toggle("hidden", !isLoggedIn);
+function goToAuth() {
+  if (!isAuthPage) window.location.href = authPage;
+}
+
+function goToPanel() {
+  if (!isPanelPage) window.location.href = panelPage;
 }
 
 async function bootstrap() {
-  if (!token) return setAuthView(false);
+  if (!token) {
+    if (isPanelPage) goToAuth();
+    return;
+  }
   try {
     currentAdmin = await request("/api/admin/me");
-    setAuthView(true);
+    if (isAuthPage) return goToPanel();
     document.querySelector("#adminBadge").textContent = `${currentAdmin.name} · ${currentAdmin.role.replace("_", " ")}`;
     applyRoleUI();
     await refreshAll();
@@ -67,7 +78,7 @@ async function bootstrap() {
     localStorage.removeItem(tokenKey);
     token = null;
     currentAdmin = null;
-    setAuthView(false);
+    if (isPanelPage) goToAuth();
   }
 }
 
@@ -408,42 +419,50 @@ document.querySelectorAll("[data-auth-tab]").forEach((button) => {
   });
 });
 
-document.querySelector("#loginForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const message = document.querySelector("#authMessage");
-  const form = event.currentTarget;
-  message.textContent = "Logging in...";
-  try {
-    const result = await request("/api/admin/login", { method: "POST", body: JSON.stringify({ email: form.elements.email.value, password: form.elements.password.value }) });
-    token = result.token;
-    localStorage.setItem(tokenKey, token);
-    await bootstrap();
-    message.textContent = currentAdmin ? "" : "Login could not finish loading the admin panel. Please refresh and try again.";
-  } catch (error) {
-    message.textContent = error.message;
-  }
-});
+const loginForm = document.querySelector("#loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = document.querySelector("#authMessage");
+    const form = event.currentTarget;
+    message.textContent = "Logging in...";
+    try {
+      const result = await request("/api/admin/login", { method: "POST", body: JSON.stringify({ email: form.elements.email.value, password: form.elements.password.value }) });
+      token = result.token;
+      localStorage.setItem(tokenKey, token);
+      goToPanel();
+    } catch (error) {
+      message.textContent = error.message;
+    }
+  });
+}
 
-document.querySelector("#signupForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const message = document.querySelector("#authMessage");
-  try {
-    const result = await request("/api/admin/signup", { method: "POST", body: JSON.stringify({ name: form.elements.name.value, email: form.elements.email.value, password: form.elements.password.value }) });
-    message.textContent = result.message;
-    form.reset();
-  } catch (error) {
-    message.textContent = error.message;
-  }
-});
+const signupForm = document.querySelector("#signupForm");
+if (signupForm) {
+  signupForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const message = document.querySelector("#authMessage");
+    try {
+      const result = await request("/api/admin/signup", { method: "POST", body: JSON.stringify({ name: form.elements.name.value, email: form.elements.email.value, password: form.elements.password.value }) });
+      message.textContent = result.message;
+      form.reset();
+    } catch (error) {
+      message.textContent = error.message;
+    }
+  });
+}
 
-document.querySelector("#logoutButton").addEventListener("click", async () => {
-  await request("/api/admin/logout", { method: "POST" }).catch(() => {});
-  localStorage.removeItem(tokenKey);
-  token = null;
-  currentAdmin = null;
-  setAuthView(false);
-});
+const logoutButton = document.querySelector("#logoutButton");
+if (logoutButton) {
+  logoutButton.addEventListener("click", async () => {
+    await request("/api/admin/logout", { method: "POST" }).catch(() => {});
+    localStorage.removeItem(tokenKey);
+    token = null;
+    currentAdmin = null;
+    goToAuth();
+  });
+}
 
 document.querySelectorAll(".sidebar [data-section]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -462,9 +481,9 @@ document.querySelectorAll("[data-sales-period]").forEach((button) => {
   });
 });
 
-document.querySelector("#productForm").addEventListener("submit", saveProduct);
-document.querySelector("#resetProductForm").addEventListener("click", resetProductForm);
-document.querySelector("#userForm").addEventListener("submit", createUser);
+document.querySelector("#productForm")?.addEventListener("submit", saveProduct);
+document.querySelector("#resetProductForm")?.addEventListener("click", resetProductForm);
+document.querySelector("#userForm")?.addEventListener("submit", createUser);
 
 bootstrap();
 window.MemoAdminReady = true;
